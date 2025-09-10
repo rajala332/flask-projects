@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Railway Ticket Calculator</title>
+    <style>
+        body {
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    background-color: #0077cc;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+form {
+    background-color: white;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+select, input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #005fa3;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+p {
+    font-size: 18px;
+}
+
+p strong {
+    color: #333;
+}
+
+p[style*="color:red"] {
+    color: red;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <h1>Railway Ticket Price Calculator</h1>
+    <form method="POST" action="/calculate">
+        <label for="source">Source Station:</label>
+        <select name="source" required>
+            {% for station in stations %}
+                <option value="{{ station }}">{{ station }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="destination">Destination Station:</label>
+        <select name="destination" required>
+            {% for station in stations %}
+                <option value="{{ station }}">{{ station }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <input type="submit" value="Calculate Price">
+    </form>
+
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+
+    {% if cost %}
+        <h3>Ticket Details:</h3>
+        <p><strong>From:</strong> {{ source }}</p>
+        <p><strong>To:</strong> {{ destination }}</p>
+        <p><strong>Ticket Cost:</strong> ₹{{ cost }}</p>
+        <p><strong>Seat:</strong> {{ seat }}</p>
+    {% endif %}
+</body>
+</html>
