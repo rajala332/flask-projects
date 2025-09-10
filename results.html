@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Results</title>
+    <style>
+        body { 
+            margin: 40px; 
+            text-align: center; 
+            background: linear-gradient(45deg, #4ECDC4, #FF6B6B, #FFE66D); 
+            min-height: 100vh;
+            color: #333;
+        }
+        .results { 
+            max-width: 400px; 
+            margin: auto; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+        a { 
+            display: inline-block; 
+            margin-top: 20px; 
+            color: #10d6c9; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        a:hover { 
+            color: #e71515; 
+            text-decoration: underline; 
+            transition: color 0.3s; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Weather Data Results</h2>
+    <div class="results">
+        <p><strong>Humidity:</strong> {{ humidity }}%</p>
+        <p><strong>Temperature:</strong> {{ temperature }}°C</p>
+        <p><strong>Rainfall:</strong> {{ rainfall }} mm</p>
+    </div>
+    <a href="/">Back to Input</a>
+</body>
+</html>
