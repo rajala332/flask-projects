@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #004080;
+        }
+        .info {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            flex: 2;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-right: 8px;
+        }
+        button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .deposit {
+            background: #28a745;
+            color: white;
+        }
+        .withdraw {
+            background: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏦 Bank Account</h2>
+        <div class="info"><b>Account Holder:</b> {{ account.name }}</div>
+        <div class="info"><b>Balance:</b> ₹{{ "%.2f"|format(account.balance) }}</div>
+
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="number" name="amount" placeholder="Enter amount" step="0.01" required>
+            <button type="submit" name="action" value="deposit" class="deposit">Deposit</button>
+        </form>
+
+        <form method="POST">
+            <input type="number" name="amount" placeholder="Enter amount" step="0.01" required>
+            <button type="submit" name="action" value="withdraw" class="withdraw">Withdraw</button>
+        </form>
+    </div>
+</body>
+</html>
