@@ -1,64 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Input</title>
+    <title>House Price</title>
     <style>
-        body { 
-            margin: 40px; 
-            text-align: center; 
-            background: linear-gradient(45deg, #4ECDC4, #FF6B6B, #FFE66D);
-            min-height: 100vh;
+        body {
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             color: #333;
         }
-        .form-container { 
-            max-width: 400px; 
-            margin: auto; 
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        form {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: left;
         }
-        input { 
-            margin: 10px; 
-            padding: 8px; 
-            width: 200px; 
-            border: 1px solid #ccc; 
-            border-radius: 5px; 
+        h2 {
+            text-align: center;
+            color: #2c3e50;
         }
-        button { 
-            padding: 10px 20px; 
-            background-color: #4ECDC4; 
-            color: white; 
-            border: none; 
-            cursor: pointer; 
-            border-radius: 5px; 
+        h3 {
+            text-align: center;
+            color: #27ae60;
         }
-        button:hover { 
-            background-color: #FF6B6B; 
-            transition: background-color 0.3s; 
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        p {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h2>Weather Data</h2>
-    <div class="form-container">
-        <form method="POST" action="/">
-            <div>
-                <label for="humidity">Humidity (%):</label><br>
-                <input type="number" id="humidity" name="humidity" step="1" required>
-            </div>
-            <div>
-                <label for="temperature">Temperature (°C):</label><br>
-                <input type="number" id="temperature" name="temperature" step="1" required>
-            </div>
-            <div>
-                <label for="rainfall">Rainfall (mm):</label><br>
-                <input type="number" id="rainfall" name="rainfall" step="0.1" required>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+    <h2>House Price Prediction</h2>
+    <form action="/predict" method="POST">
+        <label>Size (sq ft):</label>
+        <input type="number" name="size" required><br>
+        <label>Bedrooms:</label>
+        <input type="number" name="bedrooms" required><br>
+        <label>Location:</label>
+        <select name="location" required>
+            <option value="1">City Center</option>
+            <option value="2">MP</option>
+            <option value="3">Lucknow</option>
+            <option value="4">Delhi</option>
+        </select><br>
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction %}
+        <h3>Predicted Price: ₹{{ prediction }}</h3>
+    {% elif error %}
+        <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
 </body>
 </html>
